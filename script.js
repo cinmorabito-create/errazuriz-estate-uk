@@ -53,40 +53,24 @@ navigation?.querySelectorAll('a').forEach((link) => {
   });
 });
 
-const bottleModal = document.querySelector('#bottle-modal');
-const bottleModalImage = document.querySelector('#bottle-modal-image');
-const bottleModalTitle = document.querySelector('#bottle-modal-title');
-let lastBottleTrigger = null;
+const wineCards = document.querySelectorAll('.wine-card');
 
-const openBottleModal = (button) => {
-  const { bottle, wine } = button.dataset;
-  if (!bottle || !bottleModal) return;
+wineCards.forEach((card) => {
+  const toggle = card.querySelector('.wine-name');
 
-  lastBottleTrigger = button;
-  bottleModalImage.src = bottle;
-  bottleModalImage.alt = wine || '';
-  bottleModalTitle.textContent = wine || '';
-  bottleModal.hidden = false;
-  bottleModal.querySelector('.bottle-modal-close')?.focus();
-};
+  toggle?.addEventListener('click', () => {
+    const willOpen = !card.classList.contains('is-open');
 
-const closeBottleModal = () => {
-  if (!bottleModal || bottleModal.hidden) return;
-  bottleModal.hidden = true;
-  bottleModalImage.src = '';
-  lastBottleTrigger?.focus();
-};
+    wineCards.forEach((other) => {
+      other.classList.remove('is-open');
+      other.querySelector('.wine-name')?.setAttribute('aria-expanded', 'false');
+    });
 
-document.querySelectorAll('.wine-name').forEach((button) => {
-  button.addEventListener('click', () => openBottleModal(button));
-});
-
-bottleModal?.querySelectorAll('[data-close]').forEach((el) => {
-  el.addEventListener('click', closeBottleModal);
-});
-
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') closeBottleModal();
+    if (willOpen) {
+      card.classList.add('is-open');
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+  });
 });
 
 form?.addEventListener('submit', async (event) => {

@@ -79,14 +79,11 @@ h1 em, h2 em { color: var(--coral); font-style: italic; }
 .wine-note { color: var(--forest); font-size: 12px; grid-column: 2; line-height: 1.25; margin-bottom: 17px; margin-top: -2px; white-space: nowrap; }
 .wine-card-featured .wine-note { color: var(--paper); }
 
-.bottle-modal { align-items: center; display: flex; inset: 0; justify-content: center; position: fixed; z-index: 60; }
-.bottle-modal[hidden] { display: none; }
-.bottle-modal-backdrop { background: rgba(13, 30, 23, .78); inset: 0; position: absolute; }
-.bottle-modal-panel { background: var(--paper); max-width: 300px; padding: 34px 28px 26px; position: relative; text-align: center; }
-.bottle-modal-close { background: none; border: 0; color: var(--ink); cursor: pointer; font-size: 16px; padding: 6px; position: absolute; right: 8px; top: 8px; }
-.bottle-modal-close:hover { color: var(--coral); }
-.bottle-modal-image { display: block; margin: 0 auto; max-height: 55vh; max-width: 100%; width: auto; }
-.bottle-modal-title { color: var(--forest); font-family: var(--serif); font-size: 16px; letter-spacing: -.02em; margin: 16px 0 0; }
+.wine-bottle { display: grid; grid-column: 2; grid-template-rows: 0fr; transition: grid-template-rows .4s ease; }
+.wine-card.is-open .wine-bottle { grid-template-rows: 1fr; }
+.wine-bottle-inner { overflow: hidden; }
+.wine-bottle img { display: block; height: 260px; margin: 6px 0 26px; object-fit: contain; opacity: 0; transition: opacity .3s ease .1s; width: auto; }
+.wine-card.is-open .wine-bottle img { opacity: 1; }
 .competition { background: var(--coral); color: var(--paper); display: grid; grid-template-columns: .95fr 1.05fr; padding: 120px 11vw; }
 .competition .section-kicker { color: var(--ink); }
 .competition h2 { max-width: 520px; }
@@ -146,8 +143,7 @@ input:not([type="checkbox"]):focus { border-color: var(--coral); }
   .wine-card:hover { padding-left: 12px; }
   .wine-note { font-size: 11px; }
   .wine-note { white-space: normal; }
-  .bottle-modal-panel { max-width: 240px; padding: 28px 20px 20px; }
-  .bottle-modal-image { max-height: 46vh; }
+  .wine-bottle img { height: 200px; margin-bottom: 20px; }
   .competition-lede { margin-bottom: 45px; }
   .form-panel { margin: 58px 0 0; padding: 34px 25px 28px; }
   .form-grid { display: block; }
