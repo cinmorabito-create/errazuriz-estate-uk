@@ -53,6 +53,42 @@ navigation?.querySelectorAll('a').forEach((link) => {
   });
 });
 
+const bottleModal = document.querySelector('#bottle-modal');
+const bottleModalImage = document.querySelector('#bottle-modal-image');
+const bottleModalTitle = document.querySelector('#bottle-modal-title');
+let lastBottleTrigger = null;
+
+const openBottleModal = (button) => {
+  const { bottle, wine } = button.dataset;
+  if (!bottle || !bottleModal) return;
+
+  lastBottleTrigger = button;
+  bottleModalImage.src = bottle;
+  bottleModalImage.alt = wine || '';
+  bottleModalTitle.textContent = wine || '';
+  bottleModal.hidden = false;
+  bottleModal.querySelector('.bottle-modal-close')?.focus();
+};
+
+const closeBottleModal = () => {
+  if (!bottleModal || bottleModal.hidden) return;
+  bottleModal.hidden = true;
+  bottleModalImage.src = '';
+  lastBottleTrigger?.focus();
+};
+
+document.querySelectorAll('.wine-name').forEach((button) => {
+  button.addEventListener('click', () => openBottleModal(button));
+});
+
+bottleModal?.querySelectorAll('[data-close]').forEach((el) => {
+  el.addEventListener('click', closeBottleModal);
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeBottleModal();
+});
+
 form?.addEventListener('submit', async (event) => {
   event.preventDefault();
   formError.textContent = '';

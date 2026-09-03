@@ -71,10 +71,22 @@ h1 em, h2 em { color: var(--coral); font-style: italic; }
 .wine-card-featured:hover { background: var(--coral); }
 .wine-number { color: var(--coral); font-size: 10px; letter-spacing: .12em; }
 .wine-card-featured .wine-number { color: var(--sage); }
-.wine-name { font-family: var(--serif); font-size: clamp(1.3rem, 2.4vw, 2.2rem); letter-spacing: -.04em; line-height: 1.08; }
+.wine-name { background: none; border: 0; color: inherit; cursor: pointer; font-family: var(--serif); font-size: clamp(1.3rem, 2.4vw, 2.2rem); letter-spacing: -.04em; line-height: 1.08; padding: 0; text-align: left; }
+.wine-name:hover, .wine-name:focus-visible { color: var(--coral); }
+.wine-card-featured .wine-name:hover, .wine-card-featured .wine-name:focus-visible { color: var(--ink); }
+.wine-link { align-items: center; color: inherit; display: flex; justify-content: flex-end; text-decoration: none; }
 .wine-arrow { font-size: 20px; text-align: right; }
 .wine-note { color: var(--forest); font-size: 12px; grid-column: 2; line-height: 1.25; margin-bottom: 17px; margin-top: -2px; white-space: nowrap; }
 .wine-card-featured .wine-note { color: var(--paper); }
+
+.bottle-modal { align-items: center; display: flex; inset: 0; justify-content: center; position: fixed; z-index: 60; }
+.bottle-modal[hidden] { display: none; }
+.bottle-modal-backdrop { background: rgba(13, 30, 23, .78); inset: 0; position: absolute; }
+.bottle-modal-panel { background: var(--paper); max-width: 300px; padding: 34px 28px 26px; position: relative; text-align: center; }
+.bottle-modal-close { background: none; border: 0; color: var(--ink); cursor: pointer; font-size: 16px; padding: 6px; position: absolute; right: 8px; top: 8px; }
+.bottle-modal-close:hover { color: var(--coral); }
+.bottle-modal-image { display: block; margin: 0 auto; max-height: 55vh; max-width: 100%; width: auto; }
+.bottle-modal-title { color: var(--forest); font-family: var(--serif); font-size: 16px; letter-spacing: -.02em; margin: 16px 0 0; }
 .competition { background: var(--coral); color: var(--paper); display: grid; grid-template-columns: .95fr 1.05fr; padding: 120px 11vw; }
 .competition .section-kicker { color: var(--ink); }
 .competition h2 { max-width: 520px; }
@@ -134,6 +146,8 @@ input:not([type="checkbox"]):focus { border-color: var(--coral); }
   .wine-card:hover { padding-left: 12px; }
   .wine-note { font-size: 11px; }
   .wine-note { white-space: normal; }
+  .bottle-modal-panel { max-width: 240px; padding: 28px 20px 20px; }
+  .bottle-modal-image { max-height: 46vh; }
   .competition-lede { margin-bottom: 45px; }
   .form-panel { margin: 58px 0 0; padding: 34px 25px 28px; }
   .form-grid { display: block; }
