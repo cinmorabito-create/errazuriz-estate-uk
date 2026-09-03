@@ -53,24 +53,34 @@ navigation?.querySelectorAll('a').forEach((link) => {
   });
 });
 
-const wineCards = document.querySelectorAll('.wine-card');
+const wineList = document.querySelector('.wine-list');
+const wineCards = [...document.querySelectorAll('.wine-card')];
+const canHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+let pinnedCard = null;
+
+const showBottle = (card) => {
+  wineCards.forEach((other) => {
+    const isOpen = other === card;
+    other.classList.toggle('is-open', isOpen);
+    other.querySelector('.wine-name')?.setAttribute('aria-expanded', String(isOpen));
+  });
+};
 
 wineCards.forEach((card) => {
-  const toggle = card.querySelector('.wine-name');
-
-  toggle?.addEventListener('click', () => {
-    const willOpen = !card.classList.contains('is-open');
-
-    wineCards.forEach((other) => {
-      other.classList.remove('is-open');
-      other.querySelector('.wine-name')?.setAttribute('aria-expanded', 'false');
-    });
-
-    if (willOpen) {
-      card.classList.add('is-open');
-      toggle.setAttribute('aria-expanded', 'true');
-    }
+  // Click pins a bottle open — it survives the pointer leaving, and is the
+  // only way in on touch, where hover never fires.
+  card.querySelector('.wine-name')?.addEventListener('click', () => {
+    pinnedCard = pinnedCard === card ? null : card;
+    showBottle(pinnedCard);
   });
+
+  card.addEventListener('mouseenter', () => {
+    if (canHover.matches) showBottle(card);
+  });
+});
+
+wineList?.addEventListener('mouseleave', () => {
+  if (canHover.matches) showBottle(pinnedCard);
 });
 
 form?.addEventListener('submit', async (event) => {
