@@ -3,6 +3,7 @@ const navigation = document.querySelector('.main-nav');
 const form = document.querySelector('#competition-form');
 const formError = document.querySelector('#form-error');
 const formSuccess = document.querySelector('#form-success');
+const scriptUrl = 'https://script.google.com/macros/s/AKfycbz3POb6_tgz-xSMWkZoXlnBiLIZuNbW-z7pBEJES2FFeaRRadI51BdziBvcT_8bU-Smaw/exec';
 const hero = document.querySelector('.hero');
 const heroImage = document.querySelector('.hero-image');
 const imageBreak = document.querySelector('.image-break');
@@ -52,7 +53,7 @@ navigation?.querySelectorAll('a').forEach((link) => {
   });
 });
 
-form?.addEventListener('submit', (event) => {
+form?.addEventListener('submit', async (event) => {
   event.preventDefault();
   formError.textContent = '';
 
@@ -62,7 +63,30 @@ form?.addEventListener('submit', (event) => {
     return;
   }
 
-  form.hidden = true;
-  formSuccess.hidden = false;
-  formSuccess.focus();
+  const submitButton = form.querySelector('button[type="submit"]');
+  submitButton.disabled = true;
+  submitButton.innerHTML = 'Sending <span aria-hidden="true">↗</span>';
+
+  try {
+    await fetch(scriptUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        firstName: form.elements.firstName.value.trim(),
+        surname: form.elements.surname.value.trim(),
+        email: form.elements.email.value.trim(),
+        termsAccepted: form.elements.terms.checked,
+        marketingOptIn: form.elements.marketing.checked
+      })
+    });
+
+    form.hidden = true;
+    formSuccess.hidden = false;
+    formSuccess.focus();
+  } catch (error) {
+    formError.textContent = 'We could not submit your entry. Please try again.';
+    submitButton.disabled = false;
+    submitButton.innerHTML = 'Enter the competition <span aria-hidden="true">↗</span>';
+  }
 });
