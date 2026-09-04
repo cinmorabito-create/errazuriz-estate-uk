@@ -32,7 +32,7 @@ button, input { font: inherit; }
 .hero-shade { background: linear-gradient(90deg, rgba(13, 30, 23, .82) 0%, rgba(13, 30, 23, .27) 48%, rgba(13, 30, 23, .05) 100%); inset: 0; position: absolute; }
 .hero-copy { bottom: 13%; left: 11vw; max-width: 620px; position: absolute; }
 .eyebrow, .section-kicker, .prize-label { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; }
-.eyebrow { color: var(--sage); margin: 0 0 22px; }
+.eyebrow { color: var(--paper); margin: 0 0 22px; }
 h1, h2, h3, p { margin-top: 0; }
 h1, h2, h3 { font-family: var(--serif); font-weight: 400; }
 h1 { font-size: clamp(4rem, 8vw, 8rem); letter-spacing: -.065em; line-height: .91; margin: 0 0 30px; }
