@@ -81,7 +81,7 @@ h1 em, h2 em { color: var(--coral); font-style: italic; }
 .wine-card { --accent-ink: var(--paper); }
 .wine-card[data-accent="blue"] { --accent: #395974; }
 .wine-card[data-accent="gold"] { --accent: #d9b348; --accent-ink: var(--ink); }
-.wine-card[data-accent="aqua"] { --accent: #235f61; }
+.wine-card[data-accent="aqua"] { --accent: #17705f; }
 .wine-card[data-accent="claret"] { --accent: #7a3830; }
 .wine-card[data-accent="plum"] { --accent: #4e3a5c; }
 .wine-card[data-accent="terracotta"] { --accent: #a44e33; }
