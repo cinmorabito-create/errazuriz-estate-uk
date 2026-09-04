@@ -65,19 +65,28 @@ h1 em, h2 em { color: var(--coral); font-style: italic; }
 .wines-heading p { color: rgba(23, 33, 27, .7); margin: 22px 0 0; }
 .wine-count { align-self: start; color: var(--coral); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; }
 .wine-list { border-top: 1px solid var(--line); }
-.wine-card { align-items: center; border-bottom: 1px solid var(--line); column-gap: 20px; display: grid; grid-template-columns: 46px 1fr 28px; min-height: 79px; padding: 0 15px; text-decoration: none; transition: background .2s, padding .2s; }
+.wine-card { align-items: center; border-bottom: 1px solid var(--line); column-gap: 20px; display: grid; grid-template-columns: 46px 1fr 28px; min-height: 79px; padding: 0 15px; text-decoration: none; transition: background .3s ease, padding .2s; }
 .wine-card:hover { background: var(--paper); padding-left: 24px; }
-.wine-card-featured { background: var(--forest); color: var(--paper); grid-template-columns: 46px 1fr 28px; }
-.wine-card-featured:hover { background: var(--coral); }
 .wine-number { color: var(--coral); font-size: 10px; letter-spacing: .12em; }
-.wine-card-featured .wine-number { color: var(--sage); }
 .wine-name { background: none; border: 0; color: inherit; cursor: pointer; font-family: var(--serif); font-size: clamp(1.3rem, 2.4vw, 2.2rem); letter-spacing: -.04em; line-height: 1.08; padding: 0; text-align: left; }
 .wine-name:hover, .wine-name:focus-visible { color: var(--coral); }
-.wine-card-featured .wine-name:hover, .wine-card-featured .wine-name:focus-visible { color: var(--ink); }
 .wine-link { align-items: center; color: inherit; display: flex; justify-content: flex-end; text-decoration: none; }
 .wine-arrow { font-size: 20px; text-align: right; }
 .wine-note { color: var(--forest); font-size: 12px; grid-column: 2; line-height: 1.25; margin-bottom: 17px; margin-top: -2px; white-space: nowrap; }
-.wine-card-featured .wine-note { color: var(--paper); }
+
+/* Each wine carries its own accent, drawn from its label: the Malbec's printed
+   navy and the Chardonnay's gold leaf are sampled straight off the bottles,
+   the rest are muted to sit in the same register. */
+.wine-card[data-accent="blue"] { --accent: #395974; }
+.wine-card[data-accent="gold"] { --accent: #85661d; }
+.wine-card[data-accent="aqua"] { --accent: #235f61; }
+.wine-card[data-accent="claret"] { --accent: #7a3830; }
+.wine-card[data-accent="plum"] { --accent: #4e3a5c; }
+.wine-card[data-accent="terracotta"] { --accent: #a44e33; }
+
+.wine-card.is-open { background: var(--accent, var(--forest)); color: var(--paper); padding-left: 24px; }
+.wine-card.is-open .wine-name, .wine-card.is-open .wine-name:hover, .wine-card.is-open .wine-note { color: var(--paper); }
+.wine-card.is-open .wine-number { color: rgba(245, 240, 230, .65); }
 
 .wine-bottle { display: grid; grid-column: 2; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
 .wine-card.is-open .wine-bottle { grid-template-rows: 1fr; }
