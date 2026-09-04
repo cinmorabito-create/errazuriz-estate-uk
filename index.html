@@ -24,7 +24,10 @@
 
   <main>
     <section class="hero" aria-labelledby="hero-title">
-      <img class="hero-image" src="assets/hero-reading.jpg" alt="Friends sharing a book, wine and food around a table" fetchpriority="high">
+      <img class="hero-image" src="assets/hero-reading.jpg"
+           srcset="assets/hero-reading-960.jpg 960w, assets/hero-reading.jpg 1440w, assets/hero-reading-1920.jpg 1920w"
+           sizes="100vw" width="1440" height="961"
+           alt="Friends sharing a book, wine and food around a table" fetchpriority="high">
       <div class="hero-shade"></div>
       <div class="hero-copy">
         <p class="eyebrow">Errazuriz · Estate Reserva</p>
@@ -48,7 +51,14 @@
     </section>
 
     <section class="image-break" aria-label="Estate Reserva at the table">
-      <img src="assets/estate-662.jpg" alt="Errazuriz Estate Reserva Sauvignon Blanc served at a table with food">
+      <picture>
+        <source type="image/webp" sizes="100vw"
+                srcset="assets/estate-662-800.webp 800w, assets/estate-662.webp 1400w">
+        <img src="assets/estate-662.jpg"
+             srcset="assets/estate-662-800.jpg 800w, assets/estate-662.jpg 1400w"
+             sizes="100vw" width="1400" height="2098" loading="lazy"
+             alt="Errazuriz Estate Reserva Sauvignon Blanc served at a table with food">
+      </picture>
       <div class="image-note"><span>Made for the moment</span><strong>Pour. Pause.<br>Turn the page.</strong></div>
     </section>
 

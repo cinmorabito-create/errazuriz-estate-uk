@@ -56,6 +56,7 @@ h1 em, h2 em { color: var(--coral); font-style: italic; }
 .text-link { border-bottom: 1px solid currentColor; display: inline-block; font-size: 11px; letter-spacing: .11em; margin-top: 20px; padding-bottom: 5px; text-decoration: none; text-transform: uppercase; }
 .image-break { height: min(56vw, 720px); min-height: 480px; overflow: hidden; position: relative; }
 .image-break::after { background: linear-gradient(90deg, rgba(23, 33, 27, .48) 0%, rgba(23, 33, 27, .12) 31%, transparent 62%); content: ''; inset: 0; pointer-events: none; position: absolute; }
+.image-break picture { display: block; height: 100%; }
 .image-break img { height: 100%; object-fit: cover; object-position: center 68%; transform: translateY(var(--parallax-y, 0px)) scale(1.1); transition: transform .08s linear; will-change: transform; width: 100%; }
 .image-note { bottom: 18%; color: var(--paper); left: 8vw; position: absolute; text-shadow: 0 2px 5px rgba(0, 0, 0, .72), 0 5px 22px rgba(0, 0, 0, .42); z-index: 1; }
 .image-note span { color: var(--paper); display: block; font-size: 10px; letter-spacing: .2em; margin-bottom: 15px; text-shadow: 0 1px 5px rgba(0, 0, 0, .7); text-transform: uppercase; }
