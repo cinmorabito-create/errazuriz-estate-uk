@@ -95,7 +95,7 @@ form?.addEventListener('submit', async (event) => {
 
   const submitButton = form.querySelector('button[type="submit"]');
   submitButton.disabled = true;
-  submitButton.innerHTML = 'Sending <span aria-hidden="true">↗</span>';
+  submitButton.innerHTML = 'Sending <span aria-hidden="true">↗︎</span>';
 
   try {
     await fetch(scriptUrl, {
@@ -117,6 +117,6 @@ form?.addEventListener('submit', async (event) => {
   } catch (error) {
     formError.textContent = 'We could not submit your entry. Please try again.';
     submitButton.disabled = false;
-    submitButton.innerHTML = 'Enter the competition <span aria-hidden="true">↗</span>';
+    submitButton.innerHTML = 'Enter the competition <span aria-hidden="true">↗︎</span>';
   }
 });
